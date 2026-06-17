@@ -1564,26 +1564,128 @@ button {
 }
 
 @media (max-width: 760px) {
+  html,
+  body,
+  #root {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .app-shell,
+  .app-shell.is-collapsed {
+    min-height: 100dvh;
+  }
+
+  .main-shell {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .sidebar {
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .brand-row,
+  .is-collapsed .brand-row {
+    grid-template-columns: minmax(0, 1fr) 40px;
+  }
+
+  .brand-text {
+    font-size: 22px;
+  }
+
+  .sidebar-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav-list {
+    display: flex;
+    gap: 8px;
+    margin-inline: -16px;
+    padding: 0 16px 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .is-collapsed .nav-item,
+  .nav-item {
+    flex: 0 0 auto;
+    height: 42px;
+    min-width: 0;
+    grid-template-columns: 20px auto;
+    gap: 8px;
+    padding: 0 12px;
+    border-radius: 999px;
+    font-size: 14px;
+  }
+
+  .nav-item.active::before {
+    display: none;
+  }
+
   .topbar {
+    position: relative;
     height: auto;
     align-items: stretch;
     flex-direction: column;
-    padding: 16px;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .search-box {
+    width: 100%;
+    height: 44px;
+    grid-template-columns: 22px minmax(0, 1fr);
+  }
+
+  .search-box kbd {
+    display: none;
   }
 
   .top-actions {
     justify-content: space-between;
+    gap: 10px;
+  }
+
+  .top-icon,
+  .user-menu {
+    min-width: 42px;
+    height: 42px;
+    justify-content: center;
+    border: 1px solid var(--line);
+    background: #fff;
+  }
+
+  .user-menu {
+    padding-inline: 2px 8px;
   }
 
   .dashboard-main,
   .content-page {
-    padding: 24px 16px;
+    padding: 22px 16px;
   }
 
   .dashboard-title,
   .board-header {
     flex-direction: column;
     align-items: stretch;
+    gap: 14px;
+  }
+
+  .dashboard-title h1,
+  .page-header h1 {
+    font-size: 28px;
+  }
+
+  .dashboard-title p,
+  .page-header p {
+    font-size: 16px;
+    line-height: 1.45;
   }
 
   .black-button {
@@ -1601,14 +1703,40 @@ button {
   }
 
   .nav-list {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: none;
   }
 
   .agent-tile {
-    grid-template-columns: 58px minmax(0, 1fr) 42px;
+    min-height: auto;
+    grid-template-columns: 52px minmax(0, 1fr) 40px;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .agent-orb {
+    width: 52px;
+    height: 52px;
+  }
+
+  .board-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 43px;
+    gap: 8px;
+  }
+
+  .board-actions button {
+    min-width: 0;
+    padding-inline: 10px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .kanban-column {
+    min-height: auto;
   }
 
   .assistant-panel {
+    min-height: auto;
     padding: 22px 16px;
   }
 
@@ -1621,6 +1749,63 @@ button {
     justify-content: flex-start;
   }
 
+  .provider-selector > div:first-child,
+  .provider-options {
+    grid-template-columns: 1fr;
+  }
+
+  .provider-selector > div:first-child {
+    display: grid;
+    align-items: start;
+  }
+
+  .chat-thread {
+    max-height: none;
+  }
+
+  .chat-bubble {
+    max-width: 100%;
+  }
+
+  .fetching-bubble {
+    min-width: 0;
+  }
+
+  .quick-replies {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .quick-replies button {
+    width: 100%;
+  }
+
+  .chat-page-layout {
+    min-height: auto;
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .chat-agent-list {
+    padding: 14px;
+  }
+
+  .chat-agent-list button {
+    min-height: 54px;
+  }
+
+  .document-card,
+  .settings-card {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .document-card > span {
+    width: 44px;
+    height: 44px;
+  }
+
   .settings-card {
     grid-template-columns: 48px minmax(0, 1fr);
   }
@@ -1631,5 +1816,53 @@ button {
 
   .settings-card .outline-button {
     grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 420px) {
+  .brand-text {
+    font-size: 20px;
+  }
+
+  .dashboard-main,
+  .content-page,
+  .assistant-panel,
+  .chat-page-layout {
+    padding-inline: 12px;
+  }
+
+  .agent-tile {
+    grid-template-columns: 44px minmax(0, 1fr) 38px;
+    padding: 14px;
+  }
+
+  .agent-orb {
+    width: 44px;
+    height: 44px;
+  }
+
+  .agent-tile h3,
+  .directory-card h3,
+  .project-card h3,
+  .document-card h3,
+  .settings-card h3 {
+    font-size: 17px;
+  }
+
+  .board-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .board-actions .square-button {
+    width: 100%;
+  }
+
+  .task-meta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .chat-input > div {
+    gap: 10px;
   }
 }
