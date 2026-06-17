@@ -1,0 +1,35 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #6d5dfc, #21a7ff);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 12px 28px rgba(109, 93, 252, 0.28);
+}
+
+.logo-spark {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+}
+
+.logo-text {
+  font-size: 22px;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.8px;
+}
+
+.logo-text span {
+  color: #6d5dfc;
+}
