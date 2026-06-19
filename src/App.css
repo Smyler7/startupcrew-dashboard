@@ -1,13 +1,20 @@
 :root {
-  --bg: #ffffff;
-  --panel: #ffffff;
-  --soft: #f6f6f6;
-  --soft-2: #f0f0f0;
-  --text: #080808;
-  --muted: #626262;
-  --line: #dfdfdf;
-  --line-dark: #cfcfcf;
-  --shadow: 0 18px 42px rgba(0, 0, 0, 0.06);
+  --bg: #050505;
+  --panel: rgba(255, 255, 255, 0.1);
+  --panel-strong: rgba(255, 255, 255, 0.18);
+  --soft: rgba(255, 255, 255, 0.1);
+  --soft-2: rgba(255, 255, 255, 0.14);
+  --text: #f8f8f8;
+  --muted: rgba(255, 255, 255, 0.62);
+  --line: rgba(255, 255, 255, 0.18);
+  --line-dark: rgba(255, 255, 255, 0.28);
+  --glass-bg:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.065)),
+    rgba(8, 8, 8, 0.46);
+  --glass-bg-soft:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.045)),
+    rgba(0, 0, 0, 0.26);
+  --shadow: 0 22px 54px rgba(0, 0, 0, 0.34);
   color: var(--text);
   background: var(--bg);
   font-family:
@@ -27,14 +34,16 @@ html,
 body,
 #root {
   min-width: 100%;
+  width: 100%;
+  height: 100%;
   min-height: 100%;
   margin: 0;
 }
 
 body {
   margin: 0;
-  overflow-x: hidden;
-  background: #fff;
+  overflow: hidden;
+  background: #050505;
 }
 
 button,
@@ -47,11 +56,18 @@ button {
 }
 
 .app-shell {
-  min-height: 100vh;
+  height: 100dvh;
+  min-height: 0;
   display: grid;
   grid-template-columns: 286px minmax(0, 1fr);
   color: var(--text);
-  background: #fff;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px 46px),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 58px),
+    radial-gradient(circle at 18% 14%, rgba(255, 255, 255, 0.18), transparent 23rem),
+    radial-gradient(circle at 90% 86%, rgba(255, 255, 255, 0.2), transparent 25rem),
+    linear-gradient(150deg, #010101 0%, #141414 50%, #f2f2f2 150%);
+  overflow: hidden;
   transition: grid-template-columns 0.22s ease;
 }
 
@@ -1543,6 +1559,299 @@ button {
   margin-bottom: 2px;
 }
 
+.sidebar,
+.topbar,
+.assistant-panel,
+.agent-tile,
+.kanban-column,
+.task-card,
+.provider-selector,
+.chat-input,
+.directory-card,
+.project-card,
+.document-card,
+.metric-card,
+.settings-card,
+.memory-card,
+.chat-agent-list,
+.plan-card,
+.search-box,
+.chat-bubble {
+  border-color: var(--line);
+  background: var(--glass-bg);
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(22px) saturate(126%);
+  -webkit-backdrop-filter: blur(22px) saturate(126%);
+}
+
+.sidebar {
+  height: 100dvh;
+  border-right: 1px solid var(--line);
+  background: rgba(5, 5, 5, 0.52);
+}
+
+.main-shell {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.topbar {
+  position: relative;
+  background: rgba(6, 6, 6, 0.46);
+}
+
+.dashboard-layout,
+.chat-page-layout {
+  height: calc(100dvh - 90px);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.dashboard-main,
+.content-page {
+  min-height: 0;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.34) transparent;
+}
+
+.dashboard-main {
+  border-right: 1px solid var(--line);
+}
+
+.assistant-panel {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: rgba(6, 6, 6, 0.38);
+}
+
+.content-page {
+  height: calc(100dvh - 90px);
+}
+
+.chat-page-layout .assistant-panel {
+  height: 100%;
+}
+
+.brand-icon,
+.brand-text,
+.sidebar-toggle,
+.nav-item,
+.top-icon,
+.user-menu,
+.dashboard-title h1,
+.page-header h1,
+.board-header h2,
+.agent-tile h3,
+.kanban-column h3,
+.assistant-header h2,
+.formatted-message h4,
+.directory-card h3,
+.project-card h3,
+.document-card h3,
+.settings-card h3,
+.memory-card h3,
+.chat-agent-list h2,
+.chat-agent-list strong,
+.metric-card strong,
+.task-title strong,
+.provider-selector strong,
+.crew-mode-toggle span,
+.logout-button,
+.add-task {
+  color: #fff;
+}
+
+.dashboard-title h1::after {
+  content: "";
+}
+
+.dashboard-title p,
+.page-header p,
+.agent-tile p,
+.plan-card p,
+.profile-card p,
+.assistant-description,
+.provider-selector span,
+.provider-selector small,
+.crew-mode-toggle small,
+.directory-card p,
+.project-card p,
+.document-card p,
+.settings-card p,
+.memory-card p,
+.chat-agent-list small,
+.project-card footer,
+.metric-card span,
+.chat-bubble time {
+  color: var(--muted);
+}
+
+.nav-item:hover,
+.nav-item.active,
+.sidebar-toggle:hover,
+.top-icon:hover,
+.user-menu:hover,
+.agent-tile button:hover,
+.board-actions button:hover,
+.outline-button:hover,
+.quick-replies button:hover,
+.chat-input button:hover,
+.chat-agent-list button:hover,
+.chat-agent-list button.selected {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.nav-item.active::before,
+.usage-bar span,
+.progress span,
+.assistant-header p span,
+.fetching-row span {
+  background: #fff;
+}
+
+.plan-card button,
+.black-button,
+.chat-input .send-button,
+.provider-options button.active,
+.crew-mode-toggle.active {
+  color: #050505;
+  border-color: rgba(255, 255, 255, 0.82);
+  background: linear-gradient(180deg, #fff, #d7d7d7);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+}
+
+.black-button {
+  border-color: rgba(255, 255, 255, 0.82);
+}
+
+.agent-orb,
+.profile-card > span,
+.user-menu span,
+.task-meta em {
+  color: #050505;
+  background:
+    radial-gradient(circle at 35% 24%, #fff, transparent 36%),
+    linear-gradient(145deg, #f6f6f6, #9d9d9d);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 14px 30px rgba(0, 0, 0, 0.28);
+}
+
+.status-badge,
+.task-meta span,
+.skill-row span,
+.kanban-column header span,
+.search-box kbd,
+.document-card > span,
+.progress,
+.usage-bar,
+.formatted-message .inline-code {
+  color: #fff;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.agent-tile button,
+.board-actions button,
+.outline-button,
+.quick-replies button,
+.chat-agent-list button,
+.provider-options button,
+.crew-mode-toggle,
+.chat-input button,
+.search-box,
+.chat-input,
+.memory-fields textarea {
+  border-color: var(--line-dark);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.search-box input,
+.chat-input input,
+.memory-fields textarea {
+  color: #fff;
+}
+
+.search-box input::placeholder,
+.chat-input input::placeholder,
+.memory-fields textarea::placeholder {
+  color: rgba(255, 255, 255, 0.46);
+}
+
+.provider-options button.active,
+.crew-mode-toggle.active,
+.crew-mode-toggle.active span,
+.crew-mode-toggle.active small,
+.chat-input .send-button {
+  color: #050505;
+}
+
+.provider-selector small.ready {
+  color: #e8e8e8;
+}
+
+.provider-selector small.missing {
+  color: #d0d0d0;
+}
+
+.chat-bubble {
+  color: #fff;
+  background: var(--glass-bg-soft);
+}
+
+.chat-bubble.user {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.12)),
+    rgba(255, 255, 255, 0.08);
+}
+
+.chat-bubble p,
+.formatted-message p,
+.formatted-message ul,
+.formatted-message ol,
+.formatted-message h4 {
+  color: #fff;
+}
+
+.code-block,
+.formatted-message pre {
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.code-block {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.code-block-header {
+  border-bottom-color: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.dashboard-main::-webkit-scrollbar,
+.content-page::-webkit-scrollbar,
+.chat-thread::-webkit-scrollbar {
+  width: 10px;
+}
+
+.dashboard-main::-webkit-scrollbar-track,
+.content-page::-webkit-scrollbar-track,
+.chat-thread::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dashboard-main::-webkit-scrollbar-thumb,
+.content-page::-webkit-scrollbar-thumb,
+.chat-thread::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.32);
+  background-clip: padding-box;
+}
+
 @media (max-width: 1440px) {
   .dashboard-layout {
     grid-template-columns: minmax(660px, 1fr) 430px;
@@ -1565,11 +1874,13 @@ button {
   .app-shell,
   .app-shell.is-collapsed {
     grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
   }
 
   .sidebar {
     position: relative;
     height: auto;
+    max-height: 210px;
     gap: 16px;
     border-right: 0;
     border-bottom: 1px solid var(--line);
@@ -1603,7 +1914,10 @@ button {
   }
 
   .dashboard-layout {
+    height: auto;
+    min-height: 0;
     grid-template-columns: 1fr;
+    overflow: auto;
   }
 
   .dashboard-main {
@@ -1611,7 +1925,8 @@ button {
   }
 
   .assistant-panel {
-    min-height: 720px;
+    min-height: 0;
+    height: 720px;
     border-top: 1px solid var(--line);
   }
 
@@ -1632,11 +1947,14 @@ button {
 
   .app-shell,
   .app-shell.is-collapsed {
-    min-height: 100dvh;
+    height: 100dvh;
+    min-height: 0;
   }
 
   .main-shell {
+    min-height: 0;
     grid-template-rows: auto minmax(0, 1fr);
+    overflow: hidden;
   }
 
   .sidebar {
@@ -1717,7 +2035,7 @@ button {
     height: 42px;
     justify-content: center;
     border: 1px solid var(--line);
-    background: #fff;
+    background: rgba(255, 255, 255, 0.08);
   }
 
   .user-menu {
@@ -1727,6 +2045,14 @@ button {
   .dashboard-main,
   .content-page {
     padding: 22px 16px;
+  }
+
+  .dashboard-layout,
+  .chat-page-layout,
+  .content-page {
+    height: 100%;
+    min-height: 0;
+    overflow: auto;
   }
 
   .dashboard-title,
@@ -1795,7 +2121,8 @@ button {
   }
 
   .assistant-panel {
-    min-height: auto;
+    min-height: 0;
+    height: auto;
     padding: 22px 16px;
   }
 
@@ -1819,7 +2146,7 @@ button {
   }
 
   .chat-thread {
-    max-height: none;
+    max-height: 46dvh;
   }
 
   .chat-bubble {
@@ -1840,7 +2167,7 @@ button {
   }
 
   .chat-page-layout {
-    min-height: auto;
+    min-height: 0;
     padding: 16px;
     gap: 14px;
   }
@@ -1924,4 +2251,16 @@ button {
   .chat-input > div {
     gap: 10px;
   }
+}
+
+html,
+body,
+#root {
+  overflow: hidden;
+}
+
+.app-shell {
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
 }
