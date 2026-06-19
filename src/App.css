@@ -527,11 +527,12 @@ button {
   top: 0;
   z-index: 4;
   height: 90px;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 0 24px 0 42px;
+  padding: 0 clamp(18px, 2vw, 24px) 0 clamp(24px, 3vw, 42px);
   border-bottom: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(14px);
@@ -571,9 +572,10 @@ button {
 }
 
 .top-actions {
+  min-width: 0;
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: clamp(12px, 1.6vw, 25px);
 }
 
 .top-icon {
@@ -607,12 +609,12 @@ button {
 .dashboard-layout {
   min-height: calc(100vh - 90px);
   display: grid;
-  grid-template-columns: minmax(680px, 1fr) 520px;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, clamp(380px, 30vw, 520px));
 }
 
 .dashboard-main {
   min-width: 0;
-  padding: 36px 48px 34px;
+  padding: 36px clamp(28px, 3vw, 48px) 34px;
   border-right: 1px solid var(--line);
 }
 
@@ -1852,13 +1854,13 @@ button {
   background-clip: padding-box;
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 1500px) {
   .dashboard-layout {
-    grid-template-columns: minmax(660px, 1fr) 430px;
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 31vw);
   }
 
   .dashboard-main {
-    padding-inline: 36px;
+    padding-inline: 28px;
   }
 
   .agent-grid {
@@ -1867,6 +1869,29 @@ button {
 
   .kanban-board {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1240px) {
+  .dashboard-layout {
+    grid-template-columns: minmax(0, 1fr) 330px;
+  }
+
+  .dashboard-main {
+    padding-inline: 24px;
+  }
+
+  .assistant-panel {
+    padding-inline: 24px;
+  }
+
+  .assistant-header {
+    grid-template-columns: 49px minmax(0, 1fr);
+  }
+
+  .assistant-tools {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
   }
 }
 
